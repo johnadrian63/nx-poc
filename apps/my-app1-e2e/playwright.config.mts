@@ -33,8 +33,8 @@ export default defineConfig({
   },
   webServer: {
     command: isCI
-      ? 'npx nx run my-app:serve-static'
-      : 'npx nx run my-app:serve',
+      ? 'npx nx run my-app1:serve-static'
+      : 'npx nx run my-app1:serve',
     url: getReadyUrl('http://localhost:4200'),
     reuseExistingServer: true,
     cwd: workspaceRoot,

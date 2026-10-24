@@ -1,9 +1,9 @@
 {
-  "name": "my-app",
+  "name": "my-app1",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
   "prefix": "app",
-  "sourceRoot": "apps/my-app/src",
+  "sourceRoot": "apps/my-app1/src",
   "tags": [],
   "targets": {
     "build": {
@@ -11,17 +11,17 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/my-app",
-        "browser": "apps/my-app/src/main.ts",
-        "tsConfig": "apps/my-app/tsconfig.app.json",
+        "outputPath": "dist/apps/my-app1",
+        "browser": "apps/my-app1/src/main.ts",
+        "tsConfig": "apps/my-app1/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/my-app/public"
+            "input": "apps/my-app1/public"
           }
         ],
-        "styles": ["apps/my-app/src/styles.scss"]
+        "styles": ["apps/my-app1/src/styles.scss"]
       },
       "configurations": {
         "production": {
@@ -55,10 +55,10 @@
       "defaultConfiguration": "development",
       "configurations": {
         "production": {
-          "buildTarget": "my-app:build:production"
+          "buildTarget": "my-app1:build:production"
         },
         "development": {
-          "buildTarget": "my-app:build:development"
+          "buildTarget": "my-app1:build:development"
         }
       }
     },
@@ -76,9 +76,9 @@
       "dependsOn": ["build"],
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "my-app:build",
+        "buildTarget": "my-app1:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/my-app/browser",
+        "staticFilePath": "dist/apps/my-app1/browser",
         "spa": true
       }
     }
