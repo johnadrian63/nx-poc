@@ -2,7 +2,9 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "generate-models": "node --env-file=apps/my-nest-app/.env.local scripts/model.generator.ts"
+  },
   "private": true,
   "devDependencies": {
     "@angular-devkit/core": "~22.2.0",
@@ -26,6 +28,7 @@
     "@nx/vitest": "24.0.0",
     "@nx/web": "24.0.0",
     "@nx/webpack": "24.0.0",
+    "@openapitools/openapi-generator-cli": "^2.42.0",
     "@playwright/test": "^1.37.0",
     "@schematics/angular": "~22.2.0",
     "@swc-node/register": "1.11.1",
@@ -44,6 +47,7 @@
     "jest-environment-node": "~30.3.0",
     "jest-util": "~30.3.0",
     "jsdom": "^27.1.0",
+    "jsonc-eslint-parser": "^2.1.0",
     "nx": "24.0.0",
     "prettier": "^3.8.1",
     "ts-jest": "^29.4.7",
@@ -58,7 +62,8 @@
     "webpack-dev-server": "^5.2.1"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "libs/*"
   ],
   "packageManager": "npm@11.12.1",
   "dependencies": {
