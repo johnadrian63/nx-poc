@@ -13,10 +13,14 @@ export function createDocument(app: INestApplication) {
 
     const documentaryFactory = () => SwaggerModule.createDocument(app, config);
 
-    writeFileSync(
-        resolve(process.cwd(), "openapi.json"),
-        JSON.stringify(documentaryFactory(), null, 2)
-    );
+    try {
+        writeFileSync(
+            resolve(process.cwd(), "openapi.json"),
+            JSON.stringify(documentaryFactory(), null, 2)
+        );
+    } catch (error) {
+        console.log(error);
+    }
 
     SwaggerModule.setup("api", app, documentaryFactory, {
         jsonDocumentUrl: '/api-json',
