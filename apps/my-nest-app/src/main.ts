@@ -4,18 +4,33 @@
  */
 
 import { Logger } from '@nestjs/common';
-
 import { NestFactory } from '@nestjs/core';
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { AppModule } from './app/app.module';
 import { createDocument } from "./app/swagger/document-generator";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const document = createDocument(app);
 
-  createDocument(app);
+  console.log("environment", process.env.NODE_ENV);
 
-  const globalPrefix = '';
+  if (process.env.NODE_ENV !== "production") {
+    try {
+      writeFileSync(
+        resolve(process.cwd(), "openapi.json"),
+        JSON.stringify(document, null, 2)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const globalPrefix = "api";
   app.setGlobalPrefix(globalPrefix);
+
   const port = process.env.PORT || 3000;
   await app.listen(port);
 

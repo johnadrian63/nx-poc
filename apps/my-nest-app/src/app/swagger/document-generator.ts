@@ -1,9 +1,7 @@
 import { INestApplication } from "@nestjs/common";
-import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
-import { writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { DocumentBuilder, OpenAPIObject, SwaggerModule } from "@nestjs/swagger";
 
-export function createDocument(app: INestApplication) {
+export function createDocument(app: INestApplication): OpenAPIObject {
     const config = new DocumentBuilder()
         .setTitle("Swagger POC")
         .setDescription("Swagger API Documentation")
@@ -12,15 +10,6 @@ export function createDocument(app: INestApplication) {
         .build();
 
     const documentaryFactory = () => SwaggerModule.createDocument(app, config);
-
-    try {
-        writeFileSync(
-            resolve(process.cwd(), "openapi.json"),
-            JSON.stringify(documentaryFactory(), null, 2)
-        );
-    } catch (error) {
-        console.log(error);
-    }
 
     SwaggerModule.setup("api", app, documentaryFactory, {
         jsonDocumentUrl: '/api-json',
@@ -31,4 +20,6 @@ export function createDocument(app: INestApplication) {
             'https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.15.5/swagger-ui-standalone-preset.min.js',
         ],
     });
+
+    return documentaryFactory();
 }
