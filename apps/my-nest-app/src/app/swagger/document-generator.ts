@@ -1,5 +1,7 @@
 import { INestApplication } from "@nestjs/common";
 import { DocumentBuilder, SwaggerModule } from "@nestjs/swagger";
+import { writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 export function createDocument(app: INestApplication) {
     const config = new DocumentBuilder()
@@ -9,9 +11,12 @@ export function createDocument(app: INestApplication) {
         .addTag("documentation")
         .build();
 
-    console.log("createDocument");
-
     const documentaryFactory = () => SwaggerModule.createDocument(app, config);
+
+    writeFileSync(
+        resolve(process.cwd(), "openapi.json"),
+        JSON.stringify(documentaryFactory(), null, 2)
+    );
 
     SwaggerModule.setup("api", app, documentaryFactory, {
         jsonDocumentUrl: '/api-json',
