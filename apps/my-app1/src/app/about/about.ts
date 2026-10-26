@@ -13,7 +13,7 @@ export class About implements OnInit {
 
   public ngOnInit(): void {
     const API_URL = "https://nx-nestjs-five.vercel.app/api/user";
-    
+
     this.httpClient.get(API_URL)
       .pipe(
         catchError((e) => {
@@ -23,7 +23,7 @@ export class About implements OnInit {
         })
       )
       .subscribe((result) => {
-        console.log(result);
+        console.log("Result:", result);
       });
   }
 }
