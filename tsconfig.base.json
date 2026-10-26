@@ -20,7 +20,8 @@
     "noUncheckedSideEffectImports": false,
     "types": ["*"],
     "paths": {
-      "@org/api-models": ["./libs/api-models/src/index.ts"]
+      "@org/api-models": ["./libs/api-models/src/index.ts"],
+      "@org/my-lib": ["./libs/my-lib/src/index.ts"]
     }
   }
 }
