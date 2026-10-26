@@ -18,7 +18,9 @@ async function bootstrap() {
   console.log("environment", process.env.NODE_ENV);
 
   app.enableCors({
-    origin: "*"
+    origin: [
+      "https://nx-my-app1.vercel.app"
+    ]
   });
 
   if (process.env.NODE_ENV !== "production") {
