@@ -17,6 +17,10 @@ async function bootstrap() {
 
   console.log("environment", process.env.NODE_ENV);
 
+  app.enableCors({
+    origin: "*"
+  });
+
   if (process.env.NODE_ENV !== "production") {
     try {
       writeFileSync(
