@@ -1,5 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Component, inject, OnInit } from '@angular/core';
+import { catchError, throwError } from "rxjs";
 
 @Component({
   selector: 'app-about',
@@ -9,9 +10,18 @@ import { Component, inject, OnInit } from '@angular/core';
 })
 export class About implements OnInit {
   private readonly httpClient = inject<HttpClient>(HttpClient);
-  
+
   public ngOnInit(): void {
-    this.httpClient.get("https://nx-nestjs-five.vercel.app/api/user")
+    const API_URL = "https://nx-nestjs-five.vercel.app/api/user";
+    
+    this.httpClient.get(API_URL)
+      .pipe(
+        catchError((e) => {
+          console.log(e);
+
+          return throwError(() => e);
+        })
+      )
       .subscribe((result) => {
         console.log(result);
       });
