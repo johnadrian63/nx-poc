@@ -65,6 +65,20 @@
         ]
       }
     },
+    "/user/createUser": {
+      "get": {
+        "operationId": "UserController_createUser",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
+    },
     "/user/{id}": {
       "get": {
         "operationId": "UserController_findOne",
