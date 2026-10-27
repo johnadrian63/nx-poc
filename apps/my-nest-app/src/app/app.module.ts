@@ -14,23 +14,23 @@ console.log("connectionString", connectionString);
 @Module({
    imports: [
       UserModule,
-      MongooseModule.forRoot(connectionString, {
-         onConnectionCreate: (connection) => {
-            connection.on("connected", () => {
-               console.log("connected successfully!");
-            });
+      // MongooseModule.forRoot(connectionString, {
+      //    onConnectionCreate: (connection) => {
+      //       connection.on("connected", () => {
+      //          console.log("connected successfully!");
+      //       });
 
-            connection.on("disconnected", () => {
-               console.log("disconnected!");
-            });
+      //       connection.on("disconnected", () => {
+      //          console.log("disconnected!");
+      //       });
 
-            connection.on("error", (e) => {
-               console.log("connection error!", e);
-            });
+      //       connection.on("error", (e) => {
+      //          console.log("connection error!", e);
+      //       });
 
-            return connection;
-         }
-      }),
+      //       return connection;
+      //    }
+      // }),
       RouterModule.register(appRoutes)
    ],
    controllers: [AppController],
