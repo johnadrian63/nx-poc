@@ -9,7 +9,7 @@ import { appRoutes } from "./app.routes";
 
 const connectionString = `${process.env.MONGODB_CONNECTION_STRING}`;
 
-console.log(connectionString);
+console.log("connectionString", connectionString);
 
 @Module({
    imports: [
